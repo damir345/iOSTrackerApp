@@ -54,7 +54,7 @@ final class NewHabitCreationViewController: CreationTrackerViewController {
 //MARK: - ShowScheduleDelegate
 extension NewHabitCreationViewController: ShowScheduleDelegate {
     func showScheduleViewController(viewController: ScheduleViewController) {
-        viewController.sheduleDelegate = self
+        viewController.scheduleDelegate = self
         viewController.selectedDays = selectedWeekDays
         navigationController?.pushViewController(viewController, animated: true)
     }

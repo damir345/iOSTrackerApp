@@ -10,7 +10,7 @@ import UIKit
 
 final class ScheduleViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    weak var sheduleDelegate: ScheduleProtocol?
+    weak var scheduleDelegate: ScheduleProtocol?
     var selectedDays: Set<WeekDays> = []
     
     private var tableView = UITableView()
@@ -48,7 +48,7 @@ final class ScheduleViewController: UIViewController, UITableViewDataSource, UIT
     @objc
     private func saveButtonPressed() {
         navigationController?.popViewController(animated: true)
-        sheduleDelegate?.saveSelectedDays(selectedDays: selectedDays)
+        scheduleDelegate?.saveSelectedDays(selectedDays: selectedDays)
         
     }
     
