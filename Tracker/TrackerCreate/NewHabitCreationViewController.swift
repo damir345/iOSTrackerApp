@@ -42,7 +42,7 @@ final class NewHabitCreationViewController: CreationTrackerViewController {
             color: .color1,
             emoji: "🙂",
             schedule: selectedWeekDays,
-            state: .Habit
+            state: .habit
         )
         
         creationDelegate?.createTracker(tracker: tracker, category: trackerCategory)
@@ -76,7 +76,7 @@ extension NewHabitCreationViewController: ConfigureUIForTrackerCreationProtocol 
     func configureButtonsCell(cell: ButtonsCell) {
         cell.prepareForReuse()
         cell.scheduleDelegate = self
-        cell.state = .Habit
+        cell.state = .habit
     }
     
     func setUpBackground() {

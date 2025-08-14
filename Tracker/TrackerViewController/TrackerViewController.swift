@@ -9,7 +9,7 @@ import UIKit
 
 final class TrackerViewController: UIViewController {
     
-    internal let model = TrackerModel()  // ss
+    let model = TrackerModel()
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TrackerModel: TrackerCounterDelegate
+final class TrackerModel: TrackerCounterDelegate
 {
     lazy var currentCategories: [TrackerCategory] = {
         filterCategoriesToshow()
@@ -46,10 +46,7 @@ class TrackerModel: TrackerCounterDelegate
     
     //MARK: - TrackerCounterDelegate +
     func calculateTimesTrackerWasCompleted(trackerId: UUID) -> Int {
-        let contains = completedTrackers.filter {
-            $0.id == trackerId
-        }
-        return contains.count
+       completedTrackers.filter { $0.id == trackerId }.count
     }
     
     func checkIfTrackerWasCompletedAtCurrentDay(trackerId: UUID, date: Date) -> Bool {

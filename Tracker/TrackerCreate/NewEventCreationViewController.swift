@@ -24,7 +24,7 @@ final class NewEventCreationViewController: CreationTrackerViewController {
             color: .color1,       // фиксированный цвет
             emoji: "🙂",          // фиксированный эмодзи
             schedule: weekSet,
-            state: .Event)
+            state: .event)
         
         creationDelegate?.createTracker(tracker: tracker, category: trackerCategory)
         dismiss(animated: true)
@@ -35,7 +35,7 @@ final class NewEventCreationViewController: CreationTrackerViewController {
 extension NewEventCreationViewController: ConfigureUIForTrackerCreationProtocol {
     func configureButtonsCell(cell: ButtonsCell) {
         cell.prepareForReuse()
-        cell.state = .Event
+        cell.state = .event
     }
     
     func setUpBackground() {

@@ -45,14 +45,14 @@ final class PlaceHolderView: UIView {
     }
     
     func setUpNoTrackersState() {
-        let image = UIImage(named: "star")
+        let image = UIImage(resource: .star)
         imageView.image = image
         
         label.text = "Что будем отслеживать?"
     }
     
     func setUpNoSearchResultsState() {
-        let image = UIImage(named: "NoResult")
+        let image = UIImage(resource: .noResult)
         imageView.image = image
         
         label.text = "Ничего не найдено"

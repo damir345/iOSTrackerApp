@@ -59,7 +59,7 @@ class CreationTrackerViewController: UIViewController, UICollectionViewDataSourc
 
     @objc func saveButtonPressed() {
         guard let name = trackerName else { return }
-        let tracker = Tracker(name: name, color: .color1, emoji: "🙂", schedule: selectedWeekDays, state: .Habit)
+        let tracker = Tracker(name: name, color: .color1, emoji: "🙂", schedule: selectedWeekDays, state: .habit)
         creationDelegate?.createTracker(tracker: tracker, category: trackerCategory)
         dismiss(animated: true)
     }

@@ -8,8 +8,8 @@
 import UIKit
 
 enum State {
-    case Habit
-    case Event
+    case habit
+    case event
 }
 
 protocol ShowScheduleDelegate: AnyObject {
@@ -61,10 +61,7 @@ final class ButtonsCell: UICollectionViewCell, UITableViewDataSource, UITableVie
     
     //MARK: - Data Source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if state == .Habit {
-            return 2
-        }
-        return 1
+        state == .habit ? 2 : 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -105,7 +102,7 @@ final class ButtonsCell: UICollectionViewCell, UITableViewDataSource, UITableVie
         cell.prepareForReuse()
         
         guard let state = state else { return }
-        if state == .Habit {
+        if state == .habit {
             switch indexPath.row {
             case 0:
                 cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]

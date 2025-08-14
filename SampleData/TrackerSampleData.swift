@@ -28,11 +28,11 @@ final class TrackerSampleData {
         let healthTrackers = [
             Tracker(
                 name: "Morning Run", color: colors[0], emoji: "🏃",
-                schedule: [.monday, .wednesday, .friday], state: .Habit
+                schedule: [.monday, .wednesday, .friday], state: .habit
             ),
             Tracker(
                 name: "Drink Water", color: colors[1], emoji: "💧",
-                schedule: [.tuesday, .thursday], state: .Event
+                schedule: [.tuesday, .thursday], state: .event
             )
         ]
         categories.append(TrackerCategory(title: "Здоровье", trackers: healthTrackers))
@@ -41,11 +41,11 @@ final class TrackerSampleData {
         let workTrackers = [
             Tracker(
                 name: "Read Email", color: colors[2], emoji: "📧",
-                schedule: [.monday, .tuesday, .wednesday], state: .Habit
+                schedule: [.monday, .tuesday, .wednesday], state: .habit
             ),
             Tracker(
                 name: "Code Review", color: colors[3], emoji: "💻",
-                schedule: [.thursday, .friday], state: .Event
+                schedule: [.thursday, .friday], state: .event
             )
         ]
         categories.append(TrackerCategory(title: "Работа", trackers: workTrackers))
@@ -54,11 +54,11 @@ final class TrackerSampleData {
         let hobbiesTrackers = [
             Tracker(
                 name: "Read Book", color: colors[4], emoji: "📚",
-                schedule: [.saturday, .sunday], state: .Habit
+                schedule: [.saturday, .sunday], state: .habit
             ),
             Tracker(
                 name: "Play Guitar", color: colors[5], emoji: "🎸",
-                schedule: [.monday, .wednesday], state: .Event
+                schedule: [.monday, .wednesday], state: .event
             )
         ]
         categories.append(TrackerCategory(title: "Хобби", trackers: hobbiesTrackers))
@@ -67,7 +67,7 @@ final class TrackerSampleData {
         let financeTrackers = [
             Tracker(
                 name: "Budget Check", color: colors[6], emoji: "💰",
-                schedule: [.friday], state: .Habit
+                schedule: [.friday], state: .habit
             )
         ]
         categories.append(TrackerCategory(title: "Финансы", trackers: financeTrackers))
@@ -76,11 +76,11 @@ final class TrackerSampleData {
         let personalTrackers = [
             Tracker(
                 name: "Meditate", color: colors[0], emoji: "🧘",
-                schedule: [.sunday], state: .Event
+                schedule: [.sunday], state: .event
             ),
             Tracker(
                 name: "Journal", color: colors[1], emoji: "📖",
-                schedule: [.monday, .wednesday, .friday], state: .Habit
+                schedule: [.monday, .wednesday, .friday], state: .habit
             )
         ]
         categories.append(TrackerCategory(title: "Личное", trackers: personalTrackers))
