@@ -5,7 +5,6 @@
 //  Created by Damir Salakhetdinov on 1/08/25.
 //
 
-import Foundation
 import UIKit
 
 class CreationTrackerViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

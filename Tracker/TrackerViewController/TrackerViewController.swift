@@ -7,8 +7,7 @@
 
 import UIKit
 
-final class TrackerViewController: UIViewController
-                                   {
+final class TrackerViewController: UIViewController {
     
     internal let model = TrackerModel()  // ss
     

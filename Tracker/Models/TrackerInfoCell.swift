@@ -5,7 +5,6 @@
 //  Created by Damir Salakhetdinov on 28/07/25.
 //
 
-import Foundation
 import UIKit
 
 struct TrackerInfoCell {
