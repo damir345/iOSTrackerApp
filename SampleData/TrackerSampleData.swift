@@ -85,14 +85,28 @@ final class TrackerSampleData {
         ]
         categories.append(TrackerCategory(title: "Личное", trackers: personalTrackers))
     
-        // Create TrackerRecords (Completed Trackers)
-        completedTrackers = [
-            TrackerRecord(id: categories[0].trackers[0].id, date: Calendar.current.date(byAdding: .day, value: -1, to: Date())!),
-            TrackerRecord(id: categories[1].trackers[0].id, date: Calendar.current.date(byAdding: .day, value: -2, to: Date())!),
-            TrackerRecord(id: categories[2].trackers[0].id, date: Calendar.current.date(byAdding: .day, value: -3, to: Date())!),
-            TrackerRecord(id: categories[3].trackers[0].id, date: Calendar.current.date(byAdding: .day, value: -7, to: Date())!),
-            TrackerRecord(id: categories[4].trackers[0].id, date: Calendar.current.date(byAdding: .day, value: -14, to: Date())!)
+        // Индексы категорий и сколько дней назад завершён трекер
+        let completedTrackerConfigs: [(categoryIndex: Int, daysAgo: Int)] = [
+            (0, 1),
+            (1, 2),
+            (2, 3),
+            (3, 7),
+            (4, 14)
         ]
+
+        completedTrackers = completedTrackerConfigs.compactMap { config in
+            guard categories.indices.contains(config.categoryIndex),
+                  categories[config.categoryIndex].trackers.indices.contains(0),
+                  let date = Calendar.current.date(byAdding: .day, value: -config.daysAgo, to: Date())
+            else {
+                return nil
+            }
+            
+            return TrackerRecord(
+                id: categories[config.categoryIndex].trackers[0].id,
+                date: date
+            )
+        }
     
         // Assign to your model or view controller
         self.categories = categories
