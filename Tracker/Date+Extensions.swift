@@ -8,8 +8,7 @@
 import Foundation
 
 extension Date {
-    func stripTime() -> Date {
-        let calendar = Calendar.current
-        return calendar.startOfDay(for: self)
+    var stripTime: Date {
+       Calendar.current.startOfDay(for: self)
     }
 }
