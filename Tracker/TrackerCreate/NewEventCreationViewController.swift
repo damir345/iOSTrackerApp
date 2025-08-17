@@ -17,12 +17,16 @@ final class NewEventCreationViewController: CreationTrackerViewController {
     
     @objc
     override func saveButtonPressed() {
-        guard let name = trackerName else { return }
-        let weekSet = Set(WeekDays.allCases)
+        guard let name = trackerName,
+              let color = selectedColor,
+              let emoji = selectedEmoji
+        else { return }
+        let week = WeekDays.allCases
+        let weekSet = Set(week)
         let tracker = Tracker(
             name: name,
-            color: .color1,       // фиксированный цвет
-            emoji: "🙂",          // фиксированный эмодзи
+            color: color,
+            emoji: emoji,
             schedule: weekSet,
             state: .event)
         

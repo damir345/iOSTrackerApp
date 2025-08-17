@@ -42,6 +42,10 @@
 		F47602B92E4A7250005A53E8 /* TrackerViewController+UICollectionViewFlowDelegateLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47602B82E4A7250005A53E8 /* TrackerViewController+UICollectionViewFlowDelegateLayout.swift */; };
 		F47602BB2E4A7267005A53E8 /* TrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47602BA2E4A7267005A53E8 /* TrackerViewController.swift */; };
 		F47602BD2E4B3F3E005A53E8 /* TrackerSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47602BC2E4B3F3E005A53E8 /* TrackerSampleData.swift */; };
+		F47602C22E50A5F9005A53E8 /* CreationTrackerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47602C12E50A5F9005A53E8 /* CreationTrackerDataSource.swift */; };
+		F47602C42E50A63C005A53E8 /* CreationTrackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47602C32E50A63C005A53E8 /* CreationTrackerDelegate.swift */; };
+		F47602C62E50A734005A53E8 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47602C52E50A734005A53E8 /* ColorCell.swift */; };
+		F47602C82E50A74C005A53E8 /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47602C72E50A74C005A53E8 /* EmojiCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +86,10 @@
 		F47602B82E4A7250005A53E8 /* TrackerViewController+UICollectionViewFlowDelegateLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackerViewController+UICollectionViewFlowDelegateLayout.swift"; sourceTree = "<group>"; };
 		F47602BA2E4A7267005A53E8 /* TrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerViewController.swift; sourceTree = "<group>"; };
 		F47602BC2E4B3F3E005A53E8 /* TrackerSampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerSampleData.swift; sourceTree = "<group>"; };
+		F47602C12E50A5F9005A53E8 /* CreationTrackerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationTrackerDataSource.swift; sourceTree = "<group>"; };
+		F47602C32E50A63C005A53E8 /* CreationTrackerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationTrackerDelegate.swift; sourceTree = "<group>"; };
+		F47602C52E50A734005A53E8 /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
+		F47602C72E50A74C005A53E8 /* EmojiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +180,8 @@
 				F476025F2E3CD2DF005A53E8 /* Cells */,
 				F47602602E3CD2F6005A53E8 /* ConfigureUIProtocol.swift */,
 				F476026C2E3CD45F005A53E8 /* CreationTrackerViewController.swift */,
+				F47602C12E50A5F9005A53E8 /* CreationTrackerDataSource.swift */,
+				F47602C32E50A63C005A53E8 /* CreationTrackerDelegate.swift */,
 				F476026E2E3CD48D005A53E8 /* NewEventCreationViewController.swift */,
 				F47602702E3CD4AE005A53E8 /* NewHabitCreationViewController.swift */,
 				F47602742E3CD4E5005A53E8 /* TrackerCreationDelegate.swift */,
@@ -184,6 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				F47602622E3CD33B005A53E8 /* ButtonsCell.swift */,
+				F47602C52E50A734005A53E8 /* ColorCell.swift */,
+				F47602C72E50A74C005A53E8 /* EmojiCell.swift */,
 				F47602642E3CD3AB005A53E8 /* ButtonTableViewCell.swift */,
 				F476026A2E3CD3EB005A53E8 /* NameTrackerCell.swift */,
 			);
@@ -298,9 +310,11 @@
 				F47602522E3CCDE6005A53E8 /* UITextField+Extensions.swift in Sources */,
 				F476024D2E3BA350005A53E8 /* Date+Extensions.swift in Sources */,
 				F476025B2E3CD1E3005A53E8 /* ScheduleTableCell.swift in Sources */,
+				F47602C22E50A5F9005A53E8 /* CreationTrackerDataSource.swift in Sources */,
 				F476023B2E37A6B6005A53E8 /* StatisticsViewController.swift in Sources */,
 				F47602592E3CD1CE005A53E8 /* ScheduleProtocol.swift in Sources */,
 				F47602542E3CCED5005A53E8 /* TrackerInfoCell.swift in Sources */,
+				F47602C42E50A63C005A53E8 /* CreationTrackerDelegate.swift in Sources */,
 				F47602652E3CD3AB005A53E8 /* ButtonTableViewCell.swift in Sources */,
 				F47602632E3CD33B005A53E8 /* ButtonsCell.swift in Sources */,
 				F476026D2E3CD45F005A53E8 /* CreationTrackerViewController.swift in Sources */,
@@ -315,8 +329,10 @@
 				F47602442E37B4F7005A53E8 /* Weekdays.swift in Sources */,
 				F47602202E379E2D005A53E8 /* AppDelegate.swift in Sources */,
 				F47602502E3CCBD0005A53E8 /* UIColor+Extensions.swift in Sources */,
+				F47602C62E50A734005A53E8 /* ColorCell.swift in Sources */,
 				F47602BD2E4B3F3E005A53E8 /* TrackerSampleData.swift in Sources */,
 				F476027D2E3CD561005A53E8 /* TrackerCounterDelegate.swift in Sources */,
+				F47602C82E50A74C005A53E8 /* EmojiCell.swift in Sources */,
 				F47602222E379E2D005A53E8 /* SceneDelegate.swift in Sources */,
 				F476027B2E3CD54B005A53E8 /* TrackerCollectionViewCell.swift in Sources */,
 				F476023E2E37B4D8005A53E8 /* Tracker.swift in Sources */,
