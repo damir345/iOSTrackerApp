@@ -7,29 +7,39 @@
 
 import UIKit
 
-final class TrackerModel: TrackerCounterDelegate
-{
+final class TrackerModel: TrackerCounterDelegate {
+    // MARK: - Stores
+    private let trackerStore = TrackerStore()
+    private let categoryStore = TrackerCategoryStore()
+    private let recordStore = TrackerRecordStore()
+    
+    // MARK: - Data
     lazy var currentCategories: [TrackerCategory] = {
-        filterCategoriesToshow()
+        filterCategoriesToShow()
     }()
 
     var categories: [TrackerCategory] = []
     var completedTrackers: [TrackerRecord] = []
     var currentDate = Date()
     
-    //sampleData
-//    init() {
-//       let sampleData = TrackerSampleData()
-//       sampleData.createSampleData()
-//
-//       self.categories = sampleData.categories
-//       self.completedTrackers = sampleData.completedTrackers
-//    }
-
-    private func filterCategoriesToshow() -> [TrackerCategory] {
+    // MARK: - Init
+    init() {
+        //resetAllData()
+        loadData()
+    }
+    
+    private func loadData() {
+        // Загружаем категории из CoreData
+        categories = categoryStore.categories
+        completedTrackers = recordStore.completedTrackers
+        currentCategories = filterCategoriesToShow()
+    }
+    
+    // MARK: - Filtering
+    private func filterCategoriesToShow() -> [TrackerCategory] {
         currentCategories = []
         let weekdayInt = Calendar.current.component(.weekday, from: currentDate)
-        let day = (weekdayInt == 1) ?  WeekDays(rawValue: 7) : WeekDays(rawValue: weekdayInt - 1)
+        let day = (weekdayInt == 1) ? WeekDays(rawValue: 7) : WeekDays(rawValue: weekdayInt - 1)
         
         categories.forEach { category in
             let title = category.title
@@ -37,81 +47,85 @@ final class TrackerModel: TrackerCounterDelegate
                 tracker.schedule.contains(day!)
             }
             
-            if trackers.count > 0 {
+            if !trackers.isEmpty {
                 currentCategories.append(TrackerCategory(title: title, trackers: trackers))
             }
         }
         return currentCategories
     }
     
-    //MARK: - TrackerCounterDelegate +
+    // MARK: - TrackerCounterDelegate
     func calculateTimesTrackerWasCompleted(trackerId: UUID) -> Int {
-       completedTrackers.filter { $0.id == trackerId }.count
+        completedTrackers.filter { $0.id == trackerId }.count
     }
     
     func checkIfTrackerWasCompletedAtCurrentDay(trackerId: UUID, date: Date) -> Bool {
-        let contains = completedTrackers.filter {
-            ($0.id == trackerId && Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .day))
-        }.count > 0
-        return contains
+        completedTrackers.contains {
+            $0.id == trackerId && Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .day)
+        }
     }
     
     func increaseTrackerCounter(trackerId: UUID, date: Date) {
-        completedTrackers.append(TrackerRecord(id: trackerId, date: date))
+        do {
+            try recordStore.addRecord(trackerId: trackerId, date: date)
+            completedTrackers = recordStore.completedTrackers
+        } catch {
+            print("❌ Ошибка при добавлении записи: \(error)")
+        }
     }
     
     func decreaseTrackerCounter(trackerId: UUID, date: Date) {
-        completedTrackers = completedTrackers.filter {
-            if $0.id == trackerId && Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .day) {
-                return false
-            }
-            return true
+        do {
+            try recordStore.deleteRecord(trackerId: trackerId, date: date)
+            completedTrackers = recordStore.completedTrackers
+        } catch {
+            print("❌ Ошибка при удалении записи: \(error)")
         }
     }
-    //MARK: - TrackerCounterDelegate -
-
-     //TODO: change func name
-     func updateCollectionAccordingToSearchBarResults(enteredName: String) {
+    
+    // MARK: - Search & Date Update
+    func updateCollectionAccordingToSearchBarResults(enteredName: String) {
         currentCategories = []
         categories.forEach { category in
             let title = category.title
             let trackers = category.trackers.filter { tracker in
-                tracker.name.contains(enteredName)
+                tracker.name.localizedCaseInsensitiveContains(enteredName)
             }
             
-            if trackers.count > 0 {
+            if !trackers.isEmpty {
                 currentCategories.append(TrackerCategory(title: title, trackers: trackers))
             }
         }
     }
-
-     //TODO: change func name
+    
     func updateCollectionAccordingToDate() {
-        currentCategories = filterCategoriesToshow()
+        currentCategories = filterCategoriesToShow()
+    }
+    
+    // MARK: - TrackerCreationDelegate
+    func createTracker(tracker: Tracker, category: String) {
+        do {
+            try trackerStore.addNewTracker(tracker: tracker, forCategory: category)
+            // обновляем локальные данные после сохранения
+            categories = categoryStore.categories
+            updateCollectionAccordingToDate()
+        } catch {
+            print("❌ Ошибка при сохранении трекера: \(error)")
+        }
+    }
+    
+    // MARK: - CoreDataReset
+    func resetAllData() {
+        let storeCoordinator = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.persistentStoreCoordinator
+        for store in storeCoordinator.persistentStores {
+            try? storeCoordinator.destroyPersistentStore(at: store.url!, ofType: store.type, options: nil)
+        }
+        // Перезапуск контейнера
+        (UIApplication.shared.delegate as! AppDelegate).persistentContainer.loadPersistentStores { _, error in
+            if let error = error {
+                print("Ошибка загрузки: \(error)")
+            }
+        }
     }
 
-    //+ TrackerCreationDelegate
-    func createTracker(tracker: Tracker, category: String) {
-        let categoryFound = categories.filter{
-            $0.title == category
-        }
-        
-        var trackers: [Tracker] = []
-        if categoryFound.count > 0 {
-            categoryFound.forEach{
-                trackers = trackers + $0.trackers
-            }
-            trackers.append(tracker)
-            categories = categories.filter{
-                $0.title != category
-            }
-            if !trackers.isEmpty {
-                categories.append(TrackerCategory(title: category, trackers: trackers))
-            }
-        } else {
-            categories.append(TrackerCategory(title: category, trackers: [tracker]))
-        }
-        updateCollectionAccordingToDate()
-    }
-    //-
 }
