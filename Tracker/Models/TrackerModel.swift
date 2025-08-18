@@ -24,7 +24,7 @@ final class TrackerModel: TrackerCounterDelegate {
     
     // MARK: - Init
     init() {
-        //resetAllData()
+        //DataBaseStore.shared.resetAllData()
         loadData()
     }
     
@@ -113,19 +113,4 @@ final class TrackerModel: TrackerCounterDelegate {
             print("❌ Ошибка при сохранении трекера: \(error)")
         }
     }
-    
-    // MARK: - CoreDataReset
-    func resetAllData() {
-        let storeCoordinator = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.persistentStoreCoordinator
-        for store in storeCoordinator.persistentStores {
-            try? storeCoordinator.destroyPersistentStore(at: store.url!, ofType: store.type, options: nil)
-        }
-        // Перезапуск контейнера
-        (UIApplication.shared.delegate as! AppDelegate).persistentContainer.loadPersistentStores { _, error in
-            if let error = error {
-                print("Ошибка загрузки: \(error)")
-            }
-        }
-    }
-
 }

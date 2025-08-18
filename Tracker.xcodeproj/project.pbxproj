@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F415501C2E520F1E00756757 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F415501B2E520F1E00756757 /* PersistenceController.swift */; };
+		F415501C2E520F1E00756757 /* DataBaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F415501B2E520F1E00756757 /* DataBaseStore.swift */; };
 		F415501E2E52144E00756757 /* TrackerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F415501D2E52144E00756757 /* TrackerStore.swift */; };
 		F41550202E52148500756757 /* TrackerCategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F415501F2E52148500756757 /* TrackerCategoryStore.swift */; };
 		F41550222E52149C00756757 /* TrackerRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41550212E52149C00756757 /* TrackerRecordStore.swift */; };
@@ -59,7 +59,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F415501B2E520F1E00756757 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		F415501B2E520F1E00756757 /* DataBaseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseStore.swift; sourceTree = "<group>"; };
 		F415501D2E52144E00756757 /* TrackerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerStore.swift; sourceTree = "<group>"; };
 		F415501F2E52148500756757 /* TrackerCategoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCategoryStore.swift; sourceTree = "<group>"; };
 		F41550212E52149C00756757 /* TrackerRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerRecordStore.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 			children = (
 				F41550302E52251500756757 /* Converters */,
 				F41550292E5224CF00756757 /* StoreError */,
-				F415501B2E520F1E00756757 /* PersistenceController.swift */,
+				F415501B2E520F1E00756757 /* DataBaseStore.swift */,
 				F415501D2E52144E00756757 /* TrackerStore.swift */,
 				F415501F2E52148500756757 /* TrackerCategoryStore.swift */,
 				F41550212E52149C00756757 /* TrackerRecordStore.swift */,
@@ -397,7 +397,7 @@
 				F47602222E379E2D005A53E8 /* SceneDelegate.swift in Sources */,
 				F41550222E52149C00756757 /* TrackerRecordStore.swift in Sources */,
 				F476027B2E3CD54B005A53E8 /* TrackerCollectionViewCell.swift in Sources */,
-				F415501C2E520F1E00756757 /* PersistenceController.swift in Sources */,
+				F415501C2E520F1E00756757 /* DataBaseStore.swift in Sources */,
 				F41550322E52252900756757 /* ScheduleConverter.swift in Sources */,
 				F476023E2E37B4D8005A53E8 /* Tracker.swift in Sources */,
 				F47602752E3CD4E5005A53E8 /* TrackerCreationDelegate.swift in Sources */,

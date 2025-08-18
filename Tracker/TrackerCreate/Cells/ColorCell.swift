@@ -14,8 +14,8 @@ final class ColorCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            self.layer.borderWidth = self.isSelected ? 3 : 0
-            self.layer.borderColor = self.isSelected ? colorView.backgroundColor?.withAlphaComponent(0.3).cgColor : UIColor.clear.cgColor
+            layer.borderWidth = self.isSelected ? 3 : 0
+            layer.borderColor = self.isSelected ? colorView.backgroundColor?.withAlphaComponent(0.3).cgColor : UIColor.clear.cgColor
         }
     }
     
