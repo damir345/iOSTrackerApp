@@ -40,37 +40,45 @@ final class CreationTrackerDataSource: NSObject, UICollectionViewDataSource {
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
-            let cell = collectionView.dequeueReusableCell(
+            guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: NameTrackerCell.identifier,
                 for: indexPath
-            ) as! NameTrackerCell
+            ) as? NameTrackerCell else {
+                return UICollectionViewCell()
+            }
             cell.delegate = viewController
             return cell
-            
+
         case 1:
-            let cell = collectionView.dequeueReusableCell(
+            guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: ButtonsCell.identifier,
                 for: indexPath
-            ) as! ButtonsCell
+            ) as? ButtonsCell else {
+                return UICollectionViewCell()
+            }
             viewController?.configureUIDelegate?.configureButtonsCell(cell: cell)
             return cell
-            
+
         case 2:
-            let cell = collectionView.dequeueReusableCell(
+            guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: EmojiCell.identifier,
                 for: indexPath
-            ) as! EmojiCell
+            ) as? EmojiCell else {
+                return UICollectionViewCell()
+            }
             cell.label.text = allEmojis[indexPath.row]
             return cell
-            
+
         case 3:
-            let cell = collectionView.dequeueReusableCell(
+            guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: ColorCell.identifier,
                 for: indexPath
-            ) as! ColorCell
+            ) as? ColorCell else {
+                return UICollectionViewCell()
+            }
             cell.colorView.backgroundColor = allColors[indexPath.row]
             return cell
-            
+
         default:
             return UICollectionViewCell()
         }
@@ -83,18 +91,22 @@ final class CreationTrackerDataSource: NSObject, UICollectionViewDataSource {
             return UICollectionReusableView()
         }
         
-        let header = collectionView.dequeueReusableSupplementaryView(
+        guard let header = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
             withReuseIdentifier: HeaderCollectionReusableView.identifier,
             for: indexPath
-        ) as! HeaderCollectionReusableView
-        
-        if indexPath.section == 2 {
-            header.headerLabel.text = "Emoji"
-        } else if indexPath.section == 3 {
-            header.headerLabel.text = "Цвет"
+        ) as? HeaderCollectionReusableView else {
+            return UICollectionReusableView()
         }
         
+        switch indexPath.section {
+        case 2:
+            header.headerLabel.text = "Emoji"
+        case 3:
+            header.headerLabel.text = "Цвет"
+        default:
+            header.headerLabel.text = ""
+        }
         return header
     }
 }

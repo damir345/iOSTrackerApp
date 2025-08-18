@@ -94,8 +94,9 @@ final class TrackerRecordStore: NSObject {
         
         let fromPredicate = NSPredicate(format: "%K >= %@",
             #keyPath(TrackerRecordCoreData.date), dateFrom as NSDate)
-        let toPredicate = NSPredicate(format: "%K < %@",
-            #keyPath(TrackerRecordCoreData.date), dateTo! as NSDate)
+        let safeDateTo = dateTo ?? Date() // если dateTo nil, используем текущую дату
+        let toPredicate = NSPredicate(
+            format: "%K < %@", #keyPath(TrackerRecordCoreData.date), safeDateTo as NSDate)
         let idPredicate = NSPredicate(format: "%K == %@", #keyPath(TrackerRecordCoreData.trackerId), trackerId as CVarArg)
         
         let request = TrackerRecordCoreData.fetchRequest()

@@ -126,7 +126,12 @@ extension TrackerCategoryStore: NSFetchedResultsControllerDelegate {
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        delegate?.newCategoryAdded(insertedIndexes: insertedIndexes!, deletedIndexes: deletedIndexes!, updatedIndexes: updatedIndexes!)
+        // Передаем пустые коллекции, если какие-то из них nil
+        delegate?.newCategoryAdded(
+            insertedIndexes: insertedIndexes ?? [],
+            deletedIndexes: deletedIndexes ?? [],
+            updatedIndexes: updatedIndexes ?? []
+        )
         
         insertedIndexes = nil
         deletedIndexes = nil

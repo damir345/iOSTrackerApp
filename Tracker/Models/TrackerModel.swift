@@ -17,7 +17,7 @@ final class TrackerModel: TrackerCounterDelegate {
     lazy var currentCategories: [TrackerCategory] = {
         filterCategoriesToShow()
     }()
-
+    
     var categories: [TrackerCategory] = []
     var completedTrackers: [TrackerRecord] = []
     var currentDate = Date()
@@ -38,17 +38,18 @@ final class TrackerModel: TrackerCounterDelegate {
     // MARK: - Filtering
     private func filterCategoriesToShow() -> [TrackerCategory] {
         currentCategories = []
-        let weekdayInt = Calendar.current.component(.weekday, from: currentDate)
-        let day = (weekdayInt == 1) ? WeekDays(rawValue: 7) : WeekDays(rawValue: weekdayInt - 1)
         
-        categories.forEach { category in
-            let title = category.title
-            let trackers = category.trackers.filter { tracker in
-                tracker.schedule.contains(day!)
-            }
+        let weekdayInt = Calendar.current.component(.weekday, from: currentDate)
+        let dayIndex = (weekdayInt == 1) ? 7 : weekdayInt - 1
+        guard let day = WeekDays(rawValue: dayIndex) else {
+            return currentCategories // возвращаем пустой массив, если день некорректный
+        }
+        
+        for category in categories {
+            let trackers = category.trackers.filter { $0.schedule.contains(day) }
             
             if !trackers.isEmpty {
-                currentCategories.append(TrackerCategory(title: title, trackers: trackers))
+                currentCategories.append(TrackerCategory(title: category.title, trackers: trackers))
             }
         }
         return currentCategories
