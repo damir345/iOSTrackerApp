@@ -18,6 +18,7 @@ final class TrackerStore: NSObject {
     private let context: NSManagedObjectContext
     private var insertedIndexes: [IndexPath]?
     private var deletedIndexes: IndexSet?
+    private var updatedIndexes: IndexSet?
     
     private let uiColorMarshalling = UIColorMarshalling()
     private let scheduleConvertor = ScheduleConvertor()
@@ -125,13 +126,27 @@ extension TrackerStore: NSFetchedResultsControllerDelegate {
     ) {
         switch type {
         case .insert:
-            if let indexPath = newIndexPath {
-                insertedIndexes?.append(indexPath)
+            if let newIndexPath = newIndexPath {
+                insertedIndexes?.append(newIndexPath)
             }
+            
         case .delete:
             if let indexPath = indexPath {
                 deletedIndexes?.insert(indexPath.item)
             }
+            
+        case .update:
+            if let indexPath = indexPath {
+                updatedIndexes?.insert(indexPath.item)
+            }
+            
+        case .move:
+            if let oldIndexPath = indexPath, let newIndexPath = newIndexPath {
+                // Можно удалить и вставить, или обработать как отдельный случай
+                deletedIndexes?.insert(oldIndexPath.item)
+                insertedIndexes?.append(newIndexPath)
+            }
+            
         @unknown default:
             break
         }

@@ -12,10 +12,8 @@ enum Bit: Int16 {
 
     var description: Int {
         switch self {
-        case .one:
-            return 1
-        case .zero:
-            return 0
+        case .one: 1
+        case .zero: 0
         }
     }
 }
@@ -57,11 +55,6 @@ final class ScheduleConvertor {
     }
 
     private func convertFromUInt16(from value: Int16) -> [Int] {
-        let bitsInByte = bits(fromByte: value)
-        var array: [Int] = []
-        for bit in bitsInByte {
-            array.append(bit.description)
-        }
-        return array
+        bits(fromByte: value).map { $0.description }
     }
 }
