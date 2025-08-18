@@ -142,16 +142,36 @@ extension TrackerCategoryStore: NSFetchedResultsControllerDelegate {
     {
         switch type {
         case .insert:
-            guard let indexPath = newIndexPath else { fatalError() }
-            insertedIndexes?.insert(indexPath.item)
+            if let indexPath = newIndexPath {
+                insertedIndexes?.insert(indexPath.item)
+            } else {
+                print("⚠️ Ошибка: newIndexPath отсутствует для .insert")
+            }
+            
         case .delete:
-            guard let indexPath = newIndexPath else { fatalError() }
-            deletedIndexes?.insert(indexPath.item)
+            if let indexPath = indexPath {
+                deletedIndexes?.insert(indexPath.item)
+            } else {
+                print("⚠️ Ошибка: indexPath отсутствует для .delete")
+            }
+            
         case .update:
-            guard let indexPath = newIndexPath else { fatalError() }
-            updatedIndexes?.insert(indexPath.item)
+            if let indexPath = indexPath {
+                updatedIndexes?.insert(indexPath.item)
+            } else {
+                print("⚠️ Ошибка: indexPath отсутствует для .update")
+            }
+            
+        case .move:
+            if let oldIndexPath = indexPath, let newIndexPath = newIndexPath {
+                deletedIndexes?.insert(oldIndexPath.item)
+                insertedIndexes?.insert(newIndexPath.item)
+            } else {
+                print("⚠️ Ошибка: indexPath или newIndexPath отсутствует для .move")
+            }
+            
         @unknown default:
-            fatalError()
+            print("⚠️ Необработанный тип NSFetchedResultsChangeType: \(type.rawValue)")
         }
     }
 }

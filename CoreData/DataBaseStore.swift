@@ -16,25 +16,28 @@ final class DataBaseStore {
         let container = NSPersistentContainer(name: "Tracker")
         container.loadPersistentStores { storeDescription, error in
             if let error = error as NSError? {
-                fatalError("❌ Unresolved error \(error), \(error.userInfo)")
+                assertionFailure("❌ Не удалось загрузить хранилище: \(error), \(error.userInfo)")
+            } else {
+                print("✅ Core Data загружена: \(storeDescription.url?.absoluteString ?? "без URL")")
             }
         }
         return container
     }()
-    
+
     var context: NSManagedObjectContext {
-        return persistentContainer.viewContext
+        persistentContainer.viewContext
     }
-    
-    func saveContext () {
+
+    func saveContext() {
         let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("❌ Unresolved error \(nserror), \(nserror.userInfo)")
-            }
+        guard context.hasChanges else { return }
+        
+        do {
+            try context.save()
+            print("✅ Изменения сохранены в Core Data")
+        } catch {
+            let nserror = error as NSError
+            assertionFailure("❌ Ошибка при сохранении контекста: \(nserror), \(nserror.userInfo)")
         }
     }
     
