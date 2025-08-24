@@ -1,5 +1,5 @@
 //
-//  TrackerViewController2.swift
+//  TrackerViewController.swift
 //  Tracker
 //
 //  Created by Damir Salakhetdinov on 11/08/25.

@@ -34,20 +34,20 @@ final class NewHabitCreationViewController: CreationTrackerViewController {
         return scheduleSubText
     }
     
-    @objc
-    override func saveButtonPressed() {
-        guard let name = trackerName, !selectedWeekDays.isEmpty else { return }
-        let tracker = Tracker(
-            name: name,
-            color: .color1,
-            emoji: "🙂",
-            schedule: selectedWeekDays,
-            state: .habit
-        )
-        
-        creationDelegate?.createTracker(tracker: tracker, category: trackerCategory)
-        dismiss(animated: true)
-    }
+//    @objc
+//    override func saveButtonPressed() {
+//        guard let name = trackerName, !selectedWeekDays.isEmpty else { return }
+//        let tracker = Tracker(
+//            name: name,
+//            color: .color1,
+//            emoji: "🙂",
+//            schedule: selectedWeekDays,
+//            state: .habit
+//        )
+//        
+//        creationDelegate?.createTracker(tracker: tracker, category: trackerCategory)
+//        dismiss(animated: true)
+//    }
 }
 
 //MARK: - ShowScheduleDelegate
