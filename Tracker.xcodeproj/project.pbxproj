@@ -61,6 +61,8 @@
 		F4AFECAA2E5CB87A00C1EBFE /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AFECA92E5CB87A00C1EBFE /* CategoryCell.swift */; };
 		F4AFECAC2E5CB88B00C1EBFE /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AFECAB2E5CB88B00C1EBFE /* CategoryViewModel.swift */; };
 		F4AFECAE2E5CB89D00C1EBFE /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AFECAD2E5CB89D00C1EBFE /* CategoriesViewModel.swift */; };
+		F4AFECB12E5CC9D200C1EBFE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AFECB02E5CC9D200C1EBFE /* OnboardingViewController.swift */; };
+		F4AFECB32E5CCA0800C1EBFE /* SinglePageOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AFECB22E5CCA0800C1EBFE /* SinglePageOnboardingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +122,8 @@
 		F4AFECA92E5CB87A00C1EBFE /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		F4AFECAB2E5CB88B00C1EBFE /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		F4AFECAD2E5CB89D00C1EBFE /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
+		F4AFECB02E5CC9D200C1EBFE /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		F4AFECB22E5CCA0800C1EBFE /* SinglePageOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePageOnboardingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +191,7 @@
 		F476021E2E379E2D005A53E8 /* Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				F4AFECAF2E5CC9BC00C1EBFE /* Onboarding */,
 				F4AFECA42E5CB81D00C1EBFE /* Category */,
 				F476021F2E379E2D005A53E8 /* AppDelegate.swift */,
 				F476024E2E3CCB58005A53E8 /* Helpers */,
@@ -307,6 +312,15 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		F4AFECAF2E5CC9BC00C1EBFE /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F4AFECB02E5CC9D200C1EBFE /* OnboardingViewController.swift */,
+				F4AFECB22E5CCA0800C1EBFE /* SinglePageOnboardingViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -385,6 +399,7 @@
 				F47602242E379E2D005A53E8 /* TabBarController.swift in Sources */,
 				F47602402E37B4E5005A53E8 /* TrackerCategory.swift in Sources */,
 				F415502D2E5224FA00756757 /* TrackerRecordStoreError.swift in Sources */,
+				F4AFECB32E5CCA0800C1EBFE /* SinglePageOnboardingViewController.swift in Sources */,
 				F476025D2E3CD205005A53E8 /* ScheduleViewController.swift in Sources */,
 				F47602612E3CD2F6005A53E8 /* ConfigureUIProtocol.swift in Sources */,
 				F47602522E3CCDE6005A53E8 /* UITextField+Extensions.swift in Sources */,
@@ -422,6 +437,7 @@
 				F415502F2E52250B00756757 /* TrackerStoreError.swift in Sources */,
 				F47602C82E50A74C005A53E8 /* EmojiCell.swift in Sources */,
 				F4AFECAC2E5CB88B00C1EBFE /* CategoryViewModel.swift in Sources */,
+				F4AFECB12E5CC9D200C1EBFE /* OnboardingViewController.swift in Sources */,
 				F47602222E379E2D005A53E8 /* SceneDelegate.swift in Sources */,
 				F41550222E52149C00756757 /* TrackerRecordStore.swift in Sources */,
 				F476027B2E3CD54B005A53E8 /* TrackerCollectionViewCell.swift in Sources */,
