@@ -11,16 +11,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
-        guard let windowScene = scene as? UIWindowScene else { return }
-        window = UIWindow(windowScene: windowScene)
         
-        window?.rootViewController = TabBarController()
+//        clear UserDefaults
+//        if let bundleID = Bundle.main.bundleIdentifier {
+//                UserDefaults.standard.removePersistentDomain(forName: bundleID)
+//                UserDefaults.standard.synchronize()
+//            }
+        
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: windowScene)
+       
+        if (UserDefaults.standard.bool(forKey: "notFirstInApp") == false){
+            UserDefaults.standard.set(true, forKey: "notFirstInApp")
+            window?.rootViewController = OnboardingViewController(
+                transitionStyle: UIPageViewController.TransitionStyle.scroll,
+                navigationOrientation: UIPageViewController.NavigationOrientation.horizontal)
+        } else {
+            window?.rootViewController = TabBarController()
+        }
+        
+        
         window?.makeKeyAndVisible()
     }
 

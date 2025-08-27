@@ -16,8 +16,9 @@ class CreationTrackerViewController: UIViewController {
     var selectedWeekDays: Set<WeekDays> = [] {
         didSet { configureUIDelegate?.checkIfSaveButtonCanBePressed() }
     }
-    var trackerCategory = "Здоровье" {
-        didSet { configureUIDelegate?.checkIfSaveButtonCanBePressed() }
+    var trackerCategory: TrackerCategory? {
+        didSet {
+            configureUIDelegate?.checkIfSaveButtonCanBePressed() }
     }
     var trackerName: String? {
         didSet { configureUIDelegate?.checkIfSaveButtonCanBePressed() }
@@ -88,7 +89,9 @@ class CreationTrackerViewController: UIViewController {
     func saveButtonPressed() {
         guard let name = trackerName,
               let color = selectedColor,
-              let emoji = selectedEmoji
+              let emoji = selectedEmoji,
+              let categoryTitle = trackerCategory?.title
+                
         else { return }
         let tracker = Tracker(
             name: name,
@@ -97,7 +100,7 @@ class CreationTrackerViewController: UIViewController {
             schedule: selectedWeekDays,
             state: .habit)
         
-        creationDelegate?.createTracker(tracker: tracker, category: trackerCategory)
+        creationDelegate?.createTracker(tracker: tracker, category: categoryTitle)
         dismiss(animated: true)
         
     }
@@ -184,9 +187,28 @@ extension CreationTrackerViewController: SaveNameTrackerDelegate {
     }
 }
 
-// MARK: - ShowCategoriesDelegate
+// MARK: - CategorySelectProtocol
+extension CreationTrackerViewController: CategoryWasSelectedProtocol {
+    func categoryWasSelected(category: TrackerCategory) {
+        //trackerCategoryTitle = category.title
+        trackerCategory = category
+        
+        if let cell = collectionView.cellForItem(at: IndexPath(row: 0, section: 1)) as? ButtonsCell  {
+            cell.updateSubTitle(
+                forCellAt: IndexPath(row: 0, section: 0),
+                text: trackerCategory?.title ?? "")
+        }
+    }
+}
+
+//MARK: - ShowCategoriesDelegate
 extension CreationTrackerViewController: ShowCategoriesDelegate {
-    func showCategoriesViewController() {
-        // TODO
+    func showCategoriesViewController(viewController: CategoryViewController) {
+        if let trackerCategory = trackerCategory {
+            viewController.categoriesViewModel.selectedCategory = CategoryViewModel(title: trackerCategory.title, trackers: trackerCategory.trackers)
+        }
+        viewController.categoriesViewModel.categoryWasSelectedDelegate = self
+        
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
