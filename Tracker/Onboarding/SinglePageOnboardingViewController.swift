@@ -5,8 +5,6 @@
 //  Created by Damir Salakhetdinov on 25/08/25.
 //
 
-import Foundation
-
 import UIKit
 
 final class SinglePageOnboardingViewController: UIViewController {

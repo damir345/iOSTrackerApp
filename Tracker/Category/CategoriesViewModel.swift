@@ -36,28 +36,15 @@ final class CategoriesViewModel {
     }
     
     func isLastCategory(index: Int) -> Bool {
-        let count = categories.count
-        if index == count - 1 {
-            return true
-        }
-        return false
+        index == categories.count - 1
     }
     
     func categoryIsChosen(category: CategoryViewModel?) -> Bool {
-        guard let selectedCategory = selectedCategory,
-              let category = category
-        else {
-            return false
-        }
-        if selectedCategory.title == category.title {
-            return true
-        }
-        return false
-        
+        selectedCategory?.title == category?.title
     }
     
     private func getCategoriesFromStore() -> [CategoryViewModel] {
-        return categoryStore.categories.map {
+        categoryStore.categories.map {
             CategoryViewModel(
                 title: $0.title,
                 trackers: $0.trackers)

@@ -79,7 +79,7 @@ final class CategoryViewController: UIViewController, UITableViewDataSource, UIT
     
     //MARK: - TableView Data Source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (categoriesViewModel.categories.count == 0) {
+        if categoriesViewModel.categories.count == 0 {
             showPlaceHolder()
         } else {
             tableView.backgroundView = nil

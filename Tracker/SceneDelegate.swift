@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
        
-        if (UserDefaults.standard.bool(forKey: "notFirstInApp") == false){
+        if !UserDefaults.standard.bool(forKey: "notFirstInApp") {
             UserDefaults.standard.set(true, forKey: "notFirstInApp")
             window?.rootViewController = OnboardingViewController(
                 transitionStyle: UIPageViewController.TransitionStyle.scroll,

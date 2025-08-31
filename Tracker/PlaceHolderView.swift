@@ -59,7 +59,7 @@ final class PlaceHolderView: UIView {
     }
     
     func setUpNoCategories() {
-        let image = UIImage(named: "star")
+        let image = UIImage(resource: .star)
         imageView.image = image
         
         label.text = "Привычки и события можно объединить по смыслу"

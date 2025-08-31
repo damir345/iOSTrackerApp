@@ -39,8 +39,8 @@ final class CategoryCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            label.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            label.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
 }

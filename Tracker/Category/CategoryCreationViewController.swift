@@ -10,17 +10,9 @@ import UIKit
 final class CategoryCreationViewController: UIViewController {
     var saveButtonCanBePressed: Bool? {
         didSet {
-            switch saveButtonCanBePressed {
-            case true:
-                saveButton.backgroundColor = .black
-                saveButton.isEnabled = true
-            case false:
-                saveButton.backgroundColor = .lightGray
-                saveButton.isEnabled = false
-            default:
-                saveButton.backgroundColor = .lightGray
-                saveButton.isEnabled = false
-            }
+            let isEnabled = saveButtonCanBePressed == true
+            saveButton.backgroundColor = isEnabled ? .black : .lightGray
+            saveButton.isEnabled = isEnabled
         }
     }
     
@@ -52,24 +44,25 @@ final class CategoryCreationViewController: UIViewController {
     }
     
     @objc
-    func dismissKeyboard() {
+    private func dismissKeyboard() {
         view.endEditing(true)
     }
     
     @objc
     func textFieldEditingChanged(_ textField: UITextField) {
         guard let text = categoryNameTextField.text else { return }
-        if text != "" {
-            saveButtonCanBePressed = true
-        } else {
-            saveButtonCanBePressed = false
-        }
+        saveButtonCanBePressed = text != ""
     }
     
     //MARK: - Private methods
     private func createNewCategory(categoryName: String) {
-        try! trackerCategoryStore.addNewCategory(name: categoryName)
+        do {
+            try trackerCategoryStore.addNewCategory(name: categoryName)
+        } catch {
+            print("Ошибка при добавлении категории: \(error)")
+        }
     }
+
     
     private func setUpSaveButton() {
         view.addSubview(saveButton)

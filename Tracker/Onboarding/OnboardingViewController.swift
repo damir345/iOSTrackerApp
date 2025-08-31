@@ -44,7 +44,7 @@ final class OnboardingViewController: UIPageViewController {
         }
         
         setUpButton()
-        setUpPageControll()
+        setUpPageControl()
     }
     
     private func setUpButton() {
@@ -66,7 +66,7 @@ final class OnboardingViewController: UIPageViewController {
         ])
     }
     
-    private func setUpPageControll() {
+    private func setUpPageControl() {
         view.addSubview(pageControl)
             
         
