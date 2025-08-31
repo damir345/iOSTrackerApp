@@ -81,9 +81,10 @@ final class OnboardingViewController: UIPageViewController {
         let tabBarVC = TabBarController()
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
               let window = windowScene.windows.first else {
-            fatalError("Invalid Configuration")
+            assertionFailure("⚠️ Invalid Configuration: UIWindowScene не найден")
+            return
         }
-    
+        
         tabBarVC.tabBar.alpha = 0
         UIView.transition(
             with: window, duration: 0.6,
