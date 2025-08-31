@@ -24,7 +24,7 @@ final class CategoriesViewModel {
     var selectedCategory: CategoryViewModel?
     
     convenience init() {
-        let categoryStore = try! TrackerCategoryStore(context: DataBaseStore.shared.context)
+        let categoryStore = TrackerCategoryStore(context: DataBaseStore.shared.context)
         self.init(categoryStore: categoryStore)
     }
     
