@@ -63,6 +63,7 @@
 		F4AFECAE2E5CB89D00C1EBFE /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AFECAD2E5CB89D00C1EBFE /* CategoriesViewModel.swift */; };
 		F4AFECB12E5CC9D200C1EBFE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AFECB02E5CC9D200C1EBFE /* OnboardingViewController.swift */; };
 		F4AFECB32E5CCA0800C1EBFE /* SinglePageOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AFECB22E5CCA0800C1EBFE /* SinglePageOnboardingViewController.swift */; };
+		F4AFECB62E64BF5400C1EBFE /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AFECB52E64BF5400C1EBFE /* UserDefaultsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +125,7 @@
 		F4AFECAD2E5CB89D00C1EBFE /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
 		F4AFECB02E5CC9D200C1EBFE /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		F4AFECB22E5CCA0800C1EBFE /* SinglePageOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePageOnboardingViewController.swift; sourceTree = "<group>"; };
+		F4AFECB52E64BF5400C1EBFE /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 			children = (
 				F415501A2E520F0D00756757 /* CoreData */,
 				F47602B32E4A7221005A53E8 /* SampleData */,
+				F4AFECB42E64BF3900C1EBFE /* Services */,
 				F476021E2E379E2D005A53E8 /* Tracker */,
 				F476021D2E379E2D005A53E8 /* Products */,
 			);
@@ -321,6 +324,14 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		F4AFECB42E64BF3900C1EBFE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F4AFECB52E64BF5400C1EBFE /* UserDefaultsService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -403,6 +414,7 @@
 				F476025D2E3CD205005A53E8 /* ScheduleViewController.swift in Sources */,
 				F47602612E3CD2F6005A53E8 /* ConfigureUIProtocol.swift in Sources */,
 				F47602522E3CCDE6005A53E8 /* UITextField+Extensions.swift in Sources */,
+				F4AFECB62E64BF5400C1EBFE /* UserDefaultsService.swift in Sources */,
 				F476024D2E3BA350005A53E8 /* Date+Extensions.swift in Sources */,
 				F476025B2E3CD1E3005A53E8 /* ScheduleTableCell.swift in Sources */,
 				F47602C22E50A5F9005A53E8 /* CreationTrackerDataSource.swift in Sources */,

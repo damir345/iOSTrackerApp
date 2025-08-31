@@ -17,24 +17,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         options connectionOptions: UIScene.ConnectionOptions
     ) {
         
-//        clear UserDefaults
-//        if let bundleID = Bundle.main.bundleIdentifier {
-//                UserDefaults.standard.removePersistentDomain(forName: bundleID)
-//                UserDefaults.standard.synchronize()
-//            }
+//        UserDefaultsService.shared.reset()
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
        
-        if !UserDefaults.standard.bool(forKey: "notFirstInApp") {
-            UserDefaults.standard.set(true, forKey: "notFirstInApp")
+        if !UserDefaultsService.shared.isNotFirstInApp {
+            UserDefaultsService.shared.isNotFirstInApp = true
             window?.rootViewController = OnboardingViewController(
-                transitionStyle: UIPageViewController.TransitionStyle.scroll,
-                navigationOrientation: UIPageViewController.NavigationOrientation.horizontal)
+                transitionStyle: .scroll,
+                navigationOrientation: .horizontal
+            )
         } else {
             window?.rootViewController = TabBarController()
         }
-        
         
         window?.makeKeyAndVisible()
     }
