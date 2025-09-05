@@ -17,7 +17,7 @@ protocol ShowScheduleDelegate: AnyObject {
 }
 
 protocol ShowCategoriesDelegate: AnyObject {
-    func showCategoriesViewController()
+    func showCategoriesViewController(viewController: CategoryViewController)
 }
 
 final class ButtonsCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate {
@@ -39,7 +39,7 @@ final class ButtonsCell: UICollectionViewCell, UITableViewDataSource, UITableVie
     }
     
     func updateSubTitle(forCellAt indexPath: IndexPath, text: String) {
-        guard let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? ButtonTableViewCell  else { return }
+        guard let cell = tableView.cellForRow(at: indexPath) as? ButtonTableViewCell else { return }
         cell.setUpSubtitleLabel(text: text)
     }
     
@@ -52,7 +52,7 @@ final class ButtonsCell: UICollectionViewCell, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 0 {
-            categoriesDelegate?.showCategoriesViewController()
+            categoriesDelegate?.showCategoriesViewController(viewController: CategoryViewController())
         } else if indexPath.row == 1 {
             scheduleDelegate?.showScheduleViewController(viewController: ScheduleViewController())
         }

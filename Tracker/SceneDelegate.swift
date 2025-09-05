@@ -11,16 +11,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
-        guard let windowScene = scene as? UIWindowScene else { return }
-        window = UIWindow(windowScene: windowScene)
         
-        window?.rootViewController = TabBarController()
+//        UserDefaultsService.shared.reset()
+        
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: windowScene)
+       
+        if !UserDefaultsService.shared.isNotFirstInApp {
+            UserDefaultsService.shared.isNotFirstInApp = true
+            window?.rootViewController = OnboardingViewController(
+                transitionStyle: .scroll,
+                navigationOrientation: .horizontal
+            )
+        } else {
+            window?.rootViewController = TabBarController()
+        }
+        
         window?.makeKeyAndVisible()
     }
 

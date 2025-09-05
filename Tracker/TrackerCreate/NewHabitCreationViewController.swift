@@ -23,8 +23,11 @@ final class NewHabitCreationViewController: CreationTrackerViewController {
         if selectedWeekDays == weekSet {
             scheduleSubText = "Каждый день"
         } else if !selectedWeekDays.isEmpty {
-            selectedWeekDays.sorted { $0.rawValue < $1.rawValue }.forEach { day in
-                scheduleSubText += day.shortName + ", "
+            selectedWeekDays.sorted {
+                $0.rawValue < $1.rawValue
+            }.forEach { day in
+                scheduleSubText += day.shortName
+                scheduleSubText += ", "
             }
             scheduleSubText = String(scheduleSubText.dropLast(2))
         } else {
@@ -33,21 +36,6 @@ final class NewHabitCreationViewController: CreationTrackerViewController {
 
         return scheduleSubText
     }
-    
-//    @objc
-//    override func saveButtonPressed() {
-//        guard let name = trackerName, !selectedWeekDays.isEmpty else { return }
-//        let tracker = Tracker(
-//            name: name,
-//            color: .color1,
-//            emoji: "🙂",
-//            schedule: selectedWeekDays,
-//            state: .habit
-//        )
-//        
-//        creationDelegate?.createTracker(tracker: tracker, category: trackerCategory)
-//        dismiss(animated: true)
-//    }
 }
 
 //MARK: - ShowScheduleDelegate
@@ -59,10 +47,20 @@ extension NewHabitCreationViewController: ShowScheduleDelegate {
     }
 }
 
+
+
 //MARK: - ScheduleProtocol
 extension NewHabitCreationViewController: ScheduleProtocol {
     func saveSelectedDays(selectedDays: Set<WeekDays>) {
-        selectedWeekDays = selectedDays
+        if (selectedDays.isEmpty) {
+            selectedWeekDays = []
+        } else {
+            selectedWeekDays = []
+            selectedDays.forEach {
+                selectedWeekDays.insert($0)
+            }
+        }
+
         if let cell = collectionView.cellForItem(at: IndexPath(row: 0, section: 1)) as? ButtonsCell  {
             cell.updateSubTitle(
                 forCellAt: IndexPath(row: 1, section: 0),
@@ -71,11 +69,13 @@ extension NewHabitCreationViewController: ScheduleProtocol {
     }
 }
 
+
 //MARK: - ConfigureUIForTrackerCreationProtocol
 extension NewHabitCreationViewController: ConfigureUIForTrackerCreationProtocol {
     func configureButtonsCell(cell: ButtonsCell) {
         cell.prepareForReuse()
         cell.scheduleDelegate = self
+        cell.categoriesDelegate = self
         cell.state = .habit
     }
     
@@ -91,6 +91,8 @@ extension NewHabitCreationViewController: ConfigureUIForTrackerCreationProtocol 
     
     func checkIfSaveButtonCanBePressed() {
         if trackerName != nil,
+           selectedEmoji != nil,
+           selectedColor != nil,
            trackerCategory != nil,
            !selectedWeekDays.isEmpty
         {

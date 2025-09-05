@@ -58,6 +58,16 @@ final class PlaceHolderView: UIView {
         label.text = "Ничего не найдено"
     }
     
+    func setUpNoCategories() {
+        let image = UIImage(resource: .star)
+        imageView.image = image
+        
+        label.text = "Привычки и события можно объединить по смыслу"
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.textAlignment = .center
+    }
+    
     func setUpNoStatisticState() {
         // TODO
     }
